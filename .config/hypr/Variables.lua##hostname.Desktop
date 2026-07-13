@@ -1,0 +1,5 @@
+file_manager = "dolphin"
+menu = "wofi -i -p Search -G --show drun"
+
+active_opacity = 0.75
+inactive_opacity = 0.75
