@@ -18,7 +18,9 @@ PanelWindow {
 		anchors.centerIn: parent
 	}
 
+	{% if yadm.hostname == "Laptop" %}
 	Battery {
 		anchors.verticalCenter: parent.verticalCenter
 	}
+	{% endif %}
 }
