@@ -1,0 +1,11 @@
+show = drun
+
+prompt = Search
+
+insensitive = true
+
+gtk_dark = true
+
+key_expand = Tab
+
+exec_search = true

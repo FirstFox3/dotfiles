@@ -1,0 +1,48 @@
+hl.bind("SUPER + Q",                    hl.dsp.exec_cmd(terminal))
+hl.bind("SUPER + C",                    hl.dsp.window.close())
+hl.bind("SUPER + M",                    hl.dsp.exec_cmd("uwsm stop"))
+hl.bind("SUPER + E",                    hl.dsp.exec_cmd(file_manager))
+hl.bind("SUPER + R",                    hl.dsp.exec_cmd(menu))
+hl.bind("SUPER + F",                    hl.dsp.exec_cmd(browser))
+hl.bind("F11",                          hl.dsp.window.fullscreen())
+
+-- Movement
+hl.bind("SUPER + H",                    hl.dsp.focus({ direction = "l" }))
+hl.bind("SUPER + J",                    hl.dsp.focus({ direction = "d" }))
+hl.bind("SUPER + K",                    hl.dsp.focus({ direction = "u" }))
+hl.bind("SUPER + L",                    hl.dsp.focus({ direction = "r" }))
+
+hl.bind("SUPER + SHIFT + H",            hl.dsp.window.move({ direction = "l" }))
+hl.bind("SUPER + SHIFT + J",            hl.dsp.window.move({ direction = "d" }))
+hl.bind("SUPER + SHIFT + K",            hl.dsp.window.move({ direction = "u" }))
+hl.bind("SUPER + SHIFT + L",            hl.dsp.window.move({ direction = "r" }))
+
+-- Workspace movement
+local last_workspace
+
+hl.on("workspace.active", function (_)
+	last_workspace = hl.get_last_workspace()
+
+	-- Update bind
+	hl.unbind("SUPER + TAB")
+	hl.bind("SUPER + TAB",              hl.dsp.focus({ workspace = last_workspace }))
+end)
+
+hl.bind("SUPER + GRAVE",                hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("SUPER + SHIFT + GRAVE",        hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("SUPER + T",                    hl.dsp.focus({ workspace = "emptynm" }))
+hl.bind("SUPER + SHIFT + T",            hl.dsp.window.move({ workspace = "emptynm" }))
+
+-- Audio
+hl.bind("XF86AudioRaiseVolume",         hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, ignore_mods = true })
+hl.bind("XF86AudioLowerVolume",         hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, ignore_mods = true })
+hl.bind("XF86AudioMute",                hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, ignore_mods = true })
+
+-- Media
+hl.bind("XF86AudioPlay",                 hl.dsp.exec_cmd("playerctl play-pause"),                           { locked = true })
+hl.bind("SUPER + XF86AudioPlay",         hl.dsp.exec_cmd("playerctl next"),                                 { locked = true })
+hl.bind("SUPER + SHIFT + XF86AudioPlay", hl.dsp.exec_cmd("playerctl previous"),                             { locked = true })
+
+-- Brightness
+hl.bind("XF86MonBrightnessUp",           hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, ignore_mods = true })
+hl.bind("XF86MonBrightnessDown",         hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, ignore_mods = true })
