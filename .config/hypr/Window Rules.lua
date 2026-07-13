@@ -34,7 +34,6 @@ hl.window_rule({
 	match = {
 		title      = "Volume Control",
 	},
-	opacity        = "1 override",
 	float          = true,
 	center         = true,
 	size           = { "monitor_w * 0.75", "monitor_h * 0.75" }
