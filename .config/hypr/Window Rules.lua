@@ -24,7 +24,17 @@ hl.window_rule({
 	match = {
 		content    = "video",
 	},
-	opacity        = 2,
+	opacity        = "1 override",
 	float          = true,
 	pin            = true,
+})
+
+hl.window_rule({
+	name = "Pavucontrol",
+	match = {
+		title      = "Volume Control",
+	},
+	opacity        = "1 override",
+	float          = true,
+	center         = true,
 })
