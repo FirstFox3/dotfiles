@@ -37,4 +37,5 @@ hl.window_rule({
 	opacity        = "1 override",
 	float          = true,
 	center         = true,
+	size           = { "monitor_w * 0.75", "monitor_h * 0.75" }
 })
