@@ -51,18 +51,5 @@ hl.bind("SUPER + SHIFT + k",     hl.dsp.window.move({ direction = "u" }))
 hl.bind("SUPER + SHIFT + j",     hl.dsp.window.move({ direction = "d" }))
 
 --- Workspaces (Change later for personalized setup)
-for i = 0, 9 do
-	if i == 0 then
-		hl.bind("SUPER + 0", hl.dsp.focus({ workspace = 10 }))
-		hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
-		goto continue
-	end
-
-	hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
-	hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
-
-	::continue::
-end
-
 hl.bind("SUPER + SHIFT + TAB", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind("SUPER + TAB",         hl.dsp.focus({ workspace = "m+1" }))
