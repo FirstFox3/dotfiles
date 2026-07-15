@@ -1,11 +1,12 @@
 import Quickshell
 import QtQuick
+import QtQml.Models
 
-Variants {
+Instantiator {
+	asynchronous: true
 	model: Quickshell.screens
 
 	PanelWindow {
-		property ShellScreen modelData
 		screen: modelData
 
 		id: root
