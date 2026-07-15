@@ -10,5 +10,5 @@ hl.monitor({
 	mode = "1920x1080@60.00Hz",
 	position = "1920x0",
 	scale = 1,
-	mirror = "DP-1",
+	-- mirror = "DP-1",
 })
