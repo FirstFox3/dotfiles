@@ -1,26 +1,33 @@
 import Quickshell
 import QtQuick
 
-PanelWindow {
-	id: root
+Variants {
+	model: Quickshell.screens
 
-	color: Variables.bg_color
-	
-	anchors {
-		top: true
-		left: true
-		right: true
+	PanelWindow {
+		property ShellScreen modelData
+		screen: modelData
+
+		id: root
+
+		color: Variables.bg_color
+		
+		anchors {
+			top: true
+			left: true
+			right: true
+		}
+
+		implicitHeight: 40
+
+		Time {
+			anchors.centerIn: parent
+		}
+
+		{% if yadm.hostname == "Laptop" %}
+		Battery {
+			anchors.verticalCenter: parent.verticalCenter
+		}
+		{% endif %}
 	}
-
-	implicitHeight: 40
-
-	Time {
-		anchors.centerIn: parent
-	}
-
-	{% if yadm.hostname == "Laptop" %}
-	Battery {
-		anchors.verticalCenter: parent.verticalCenter
-	}
-	{% endif %}
 }
