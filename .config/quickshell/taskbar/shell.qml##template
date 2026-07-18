@@ -29,6 +29,12 @@ Instantiator {
 		Battery {
 			anchors.verticalCenter: parent.verticalCenter
 		}
+
 		{% endif %}
+		Workspaces {
+			anchors.verticalCenter: parent.verticalCenter
+
+			screen: root.screen
+		}
 	}
 }
