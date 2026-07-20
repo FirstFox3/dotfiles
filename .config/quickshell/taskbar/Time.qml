@@ -5,6 +5,7 @@ import QtQml
 
 Column {
 	id: root
+
 	Text {
 		anchors.horizontalCenter: root.horizontalCenter
 
