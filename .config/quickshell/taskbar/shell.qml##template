@@ -22,17 +22,26 @@ Instantiator {
 		implicitHeight: 40
 
 		Time {
+			id: time
+
 			anchors.centerIn: parent
 		}
 
 		{% if yadm.hostname == "Laptop" %}
 		Battery {
+			id: battery
+
 			anchors.verticalCenter: parent.verticalCenter
 		}
 
 		{% endif %}
 		Workspaces {
+			id: workspaces
+
 			anchors.verticalCenter: parent.verticalCenter
+
+			anchors.left: battery?.right
+			anchors.leftMargin: battery ? 20 : 5
 
 			screen: root.screen
 		}

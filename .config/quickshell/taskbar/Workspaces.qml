@@ -3,6 +3,7 @@ import Quickshell.Hyprland
 import QtQuick.Layouts
 import QtQuick
 
+// TODO: Fix animation not occuring on new workspace
 RowLayout {
 	required property ShellScreen screen
 
@@ -26,6 +27,7 @@ RowLayout {
 
 			readonly property color inactive_color: "#444444"
 			readonly property color active_color: "#66AAFF"
+			// TODO: Sync with workspace change duration
 			readonly property int anim_duration: 250
 
 			radius: 90
