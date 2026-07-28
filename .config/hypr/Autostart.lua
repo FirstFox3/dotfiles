@@ -1,5 +1,6 @@
 hl.on("hyprland.start", function ()
 	hl.exec_cmd("playerctld daemon")
+	hl.exec_cmd("anyrun daemon")
 	hl.exec_cmd("qs -c taskbar")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("flatpak run com.ticktick.TickTick")

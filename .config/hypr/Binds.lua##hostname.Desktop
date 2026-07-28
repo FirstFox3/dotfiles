@@ -2,7 +2,7 @@
 hl.bind("SUPER + Q",             hl.dsp.exec_cmd("kitty"))
 hl.bind("SUPER + F",             hl.dsp.exec_cmd("firefox"))
 hl.bind("SUPER + E",             hl.dsp.exec_cmd(file_manager))
-hl.bind("SUPER + R",             hl.dsp.exec_cmd(menu))
+hl.bind("SUPER + R",             hl.dsp.exec_cmd("wofi"))
 
 --- Mouse controls
 hl.bind("SUPER + mouse:272",     hl.dsp.window.drag(),   { mouse = true })
