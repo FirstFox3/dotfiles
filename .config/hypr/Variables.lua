@@ -1,5 +1,3 @@
-file_manager      = "dolphin"
-
 active_opacity   = 0.75
 inactive_opacity = 0.75
 
