@@ -5,12 +5,9 @@ import Quickshell.Widgets
 
 Row {
 	function getBatteryIcon() {
-		const stateMap = {
-			"Charging": "-charging",
-		}
-
 		const percentage = (Math.ceil(UPower.displayDevice.percentage * 10) * 10).toString().padStart(3, '0')
-		const state = stateMap[UPowerDeviceState.toString(UPower.displayDevice.state)] || ""
+
+		const state = UPower.displayDevice.state == UPowerDeviceState.Charging ? "-charging" : ""
 
 		return Quickshell.iconPath(`battery-${percentage}${state}-symbolic`)
 	}
