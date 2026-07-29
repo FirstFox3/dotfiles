@@ -5,7 +5,7 @@ import Quickshell.Widgets
 
 Row {
 	function getBatteryIcon() {
-		const percentage = (Math.ceil(UPower.displayDevice.percentage * 10) * 10).toString().padStart(3, '0')
+		const percentage = (Math.round(UPower.displayDevice.percentage * 10) * 10).toString().padStart(3, '0')
 
 		const state = UPower.displayDevice.state == UPowerDeviceState.Charging ? "-charging" : ""
 
