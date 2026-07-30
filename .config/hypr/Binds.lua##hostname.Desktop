@@ -1,7 +1,7 @@
 --- Opening Apps
 hl.bind("SUPER + Q",             hl.dsp.exec_cmd("kitty"))
 hl.bind("SUPER + F",             hl.dsp.exec_cmd("firefox"))
-hl.bind("SUPER + E",             hl.dsp.exec_cmd(file_manager))
+hl.bind("SUPER + E",             hl.dsp.exec_cmd("dolphin"))
 hl.bind("SUPER + R",             hl.dsp.exec_cmd("wofi"))
 
 --- Mouse controls
