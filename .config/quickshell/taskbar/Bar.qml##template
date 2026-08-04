@@ -2,11 +2,12 @@ import Quickshell
 import QtQuick
 import QtQml.Models
 
-Instantiator {
-	asynchronous: true
+Variants {
 	model: Quickshell.screens
 
 	PanelWindow {
+		property var modelData
+
 		screen: modelData
 
 		id: root
@@ -35,14 +36,5 @@ Instantiator {
 		}
 
 		{% endif %}
-		Workspaces {
-			id: workspaces
-
-			anchors.verticalCenter: parent.verticalCenter
-
-			anchors.right: parent.right
-
-			screen: root.screen
-		}
 	}
 }
