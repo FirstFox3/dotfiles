@@ -12,7 +12,7 @@ Variants {
 
 		id: root
 
-		color: Variables.bg_color
+		color: Colors.background
 		
 		anchors {
 			top: true

@@ -9,7 +9,7 @@ Column {
 	Text {
 		anchors.horizontalCenter: root.horizontalCenter
 
-		color: Variables.text_color
+		color: Colors.on_background
 
 		font.family: "monospace"
 		text: Qt.formatTime(clock.date, "h:mm:ss AP")
@@ -18,7 +18,7 @@ Column {
 	Text {
 		anchors.horizontalCenter: root.horizontalCenter
 
-		color: Variables.text_color
+		color: Colors.on_background
 
 		font.family: "monospace"
 		text: Qt.formatDate(clock.date, "M/d/yy")

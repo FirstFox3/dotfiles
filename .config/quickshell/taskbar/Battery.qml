@@ -13,7 +13,7 @@ Row {
 	}
 
 	Text {
-		color: Variables.text_color
+		color: Colors.on_background
 		text:  Math.ceil(UPower.displayDevice.percentage * 100) + "%"
 		font.family: "monospace"
 		anchors.verticalCenter: parent.verticalCenter

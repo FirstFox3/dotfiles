@@ -74,9 +74,9 @@ Variants {
 						Layout.fillWidth: true
 						Layout.fillHeight: true
 
-						readonly property color inactive_color: "#444444"
-						readonly property color active_color: "#66AAFF"
-						readonly property color tagged_color: "#FFA166"
+						readonly property color inactive_color: Colors.surface
+						readonly property color active_color: Colors.primary
+						readonly property color tagged_color: Colors.inverse_primary
 
 						readonly property int anim_duration: 200
 

@@ -1,0 +1,5 @@
+[config]
+
+[templates.shellColors]
+input_path = "~/.config/matugen/templates/Colors.qml"
+output_path = "~/.config/quickshell/taskbar/Colors.qml"
