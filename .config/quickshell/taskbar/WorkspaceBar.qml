@@ -5,149 +5,156 @@ import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
-Variants {
-	model: Quickshell.screens
+ShellRoot {
+	PersistentProperties {
+		id: persistent
+		reloadableId: "persistent"
 
-	PanelWindow {
-		property var modelData
+		property var trackedWorkspaces: []
+	}
 
-		property var taggedWorkspace
+	IpcHandler {
+		target: "workspaceBar"
 
-		id: root
+		function swap() {
+			if (persistent.trackedWorkspaces[Hyprland.focusedMonitor.id] == null) return
 
-		screen: modelData
-
-		color: "transparent"
-
-		anchors {
-			bottom: true
-			left: true
-			right: true
+			let temp = Hyprland.focusedWorkspace
+			persistent.trackedWorkspaces[Hyprland.focusedMonitor.id].activate()
+			persistent.trackedWorkspaces[Hyprland.focusedMonitor.id] = temp
 		}
 
-		implicitHeight: 8
-
-		IpcHandler {
-			target: "workspaceBar"
-
-			function swap() {
-				if (taggedWorkspace == null) return
-
-				let temp = Hyprland.focusedWorkspace
-				taggedWorkspace.activate()
-				taggedWorkspace = temp
-			}
-
-			function target() {
-				taggedWorkspace = Hyprland.focusedWorkspace
-			}
+		function target() {
+			persistent.trackedWorkspaces[Hyprland.focusedMonitor.id] = Hyprland.focusedWorkspace
 		}
+	}
 
-		ClippingRectangle {
-			color: "white"
-			implicitHeight: 5
-			implicitWidth: root.width * 0.9
-			anchors.verticalCenter: parent.bottom
-			anchors.horizontalCenter: parent.horizontalCenter
-			radius: height / 2
+	Variants {
+		model: Quickshell.screens
 
-			RowLayout {
-				anchors.fill: parent
-				spacing: 0
+		PanelWindow {
+			property var modelData
 
-				Repeater {
-					function getMonitorsWorkspaces() {
-						var currentMonitor = Hyprland.monitorFor(screen);
-						var workspaces = Hyprland.workspaces.values;
+			id: root
 
-						// Of all workspaces, return the ones which reside on the correct monitor
-						return workspaces.reduce((list, workspace) => 
-							workspace.monitor == currentMonitor ? [...list, workspace] : list
-						, []);
-					}
-					
-					model: getMonitorsWorkspaces()
+			screen: modelData
 
-					Rectangle {
-						id: workspaceIdentifier
+			color: "transparent"
 
-						Layout.fillWidth: true
-						Layout.fillHeight: true
+			anchors {
+				bottom: true
+				left: true
+				right: true
+			}
 
-						readonly property color inactive_color: Colors.surface
-						readonly property color active_color: Colors.primary
-						readonly property color tagged_color: Colors.inverse_primary
+			implicitHeight: 8
 
-						readonly property int anim_duration: 200
+			ClippingRectangle {
+				color: "white"
+				implicitHeight: 5
+				implicitWidth: root.width * 0.9
+				anchors.verticalCenter: parent.bottom
+				anchors.horizontalCenter: parent.horizontalCenter
+				radius: height / 2
 
-						states: [
-							State {
-								name: "active"
-								when: modelData.active
-								PropertyChanges {
-									workspaceIdentifier {
-										color: active_color
+				RowLayout {
+					anchors.fill: parent
+					spacing: 0
+
+					Repeater {
+						function getMonitorsWorkspaces() {
+							var currentMonitor = Hyprland.monitorFor(screen);
+							var workspaces = Hyprland.workspaces.values;
+
+							// Of all workspaces, return the ones which reside on the correct monitor
+							return workspaces.reduce((list, workspace) => 
+								workspace.monitor == currentMonitor ? [...list, workspace] : list
+							, []);
+						}
+						
+						model: getMonitorsWorkspaces()
+
+						Rectangle {
+							id: workspaceIdentifier
+
+							Layout.fillWidth: true
+							Layout.fillHeight: true
+
+							readonly property color inactive_color: Colors.surface
+							readonly property color active_color: Colors.primary
+							readonly property color tracked_color: Colors.inverse_primary
+
+							readonly property int anim_duration: 200
+
+							states: [
+								State {
+									name: "active"
+									when: modelData.active
+									PropertyChanges {
+										workspaceIdentifier {
+											color: active_color
+										}
 									}
-								}
-							},
-							State {
-								name: "tagged"
-								when: modelData == taggedWorkspace
-								PropertyChanges {
-									workspaceIdentifier {
-										color: tagged_color
+								},
+								State {
+									name: "tracked"
+									when: persistent.trackedWorkspaces.includes(modelData)
+									PropertyChanges {
+										workspaceIdentifier {
+											color: tracked_color
+										}
 									}
-								}
-							},
-							State {
-								name: "inactive"
-								when: !modelData.active
-								PropertyChanges {
-									workspaceIdentifier {
-										color: inactive_color
+								},
+								State {
+									name: "inactive"
+									when: !modelData.active
+									PropertyChanges {
+										workspaceIdentifier {
+											color: inactive_color
+										}
 									}
-								}
-							},
-						]
+								},
+							]
 
-						transitions: [
-							Transition {
-								from: "inactive"
-								to: "active"
+							transitions: [
+								Transition {
+									from: "inactive"
+									to: "active"
 
-								ColorAnimation {
-									property: "color"
-									duration: anim_duration
-								}
-							},
-							Transition {
-								from: "active"
-								to: "inactive"
-								
-								ColorAnimation {
-									property: "color"
-									duration: anim_duration
-								}
-							},
-							Transition {
-								from: "active"
-								to: "tagged"
-								
-								ColorAnimation {
-									property: "color"
-									duration: anim_duration
-								}
-							},
-							Transition {
-								from: "tagged"
-								to: "inactive"
-								
-								ColorAnimation {
-									property: "color"
-									duration: anim_duration
-								}
-							},
-						]
+									ColorAnimation {
+										property: "color"
+										duration: anim_duration
+									}
+								},
+								Transition {
+									from: "active"
+									to: "inactive"
+									
+									ColorAnimation {
+										property: "color"
+										duration: anim_duration
+									}
+								},
+								Transition {
+									from: "active"
+									to: "tracked"
+									
+									ColorAnimation {
+										property: "color"
+										duration: anim_duration
+									}
+								},
+								Transition {
+									from: "tracked"
+									to: "inactive"
+									
+									ColorAnimation {
+										property: "color"
+										duration: anim_duration
+									}
+								},
+							]
+						}
 					}
 				}
 			}
