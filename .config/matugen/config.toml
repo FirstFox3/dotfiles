@@ -1,4 +1,5 @@
 [config]
+caching = false
 
 [templates.shellColors]
 input_path = "~/.config/matugen/templates/Colors.qml"
