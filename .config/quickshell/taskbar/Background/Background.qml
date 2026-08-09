@@ -16,7 +16,7 @@ ShellRoot {
 		target: "background"
 		
 		function setBackground(fileName: string) {
-			persistent.backgroundSource = `/usr/share/wallpapers/custom/${fileName}`
+			persistent.backgroundSource = `/usr/share/wallpapers/${fileName}`
 			Quickshell.execDetached([Quickshell.shellDir + "/Scripts/updateTheme.sh", `${persistent.backgroundSource}`])
 		}
 	}
@@ -48,13 +48,17 @@ ShellRoot {
 
 			Image {
 				anchors.fill: root.contentItem
-				source: "/usr/share/wallpapers/custom/frameOne.jpg"
+				source: "/usr/share/wallpapers/frameOne.jpg"
 				sourceSize.width: 1920
 				sourceSize.height: 1080
 			}
 
 			MediaPlayer {
 				onSourceChanged: {
+					play()
+				}
+
+				Component.onCompleted: {
 					play()
 				}
 
