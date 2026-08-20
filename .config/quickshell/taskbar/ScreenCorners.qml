@@ -23,30 +23,30 @@ Variants {
 		exclusionMode: ExclusionMode.Ignore
 
 		RoundedCorners { 
-			anchors.fill: parent
+			anchors.top: parent.top
+			anchors.left: parent.left
 			size: 20
-			color: "white"
 			corner: RoundedCorners.Corner.TL
 		}
 
 		RoundedCorners { 
-			anchors.fill: parent
+			anchors.top: parent.top
+			anchors.right: parent.right
 			size: 20
-			color: "white"
 			corner: RoundedCorners.Corner.TR
 		}
 
 		RoundedCorners { 
-			anchors.fill: parent
+			anchors.bottom: parent.bottom
+			anchors.right: parent.right
 			size: 20
-			color: "white"
 			corner: RoundedCorners.Corner.BR
 		}
 
 		RoundedCorners { 
-			anchors.fill: parent
+			anchors.bottom: parent.bottom
+			anchors.left: parent.left
 			size: 20
-			color: "white"
 			corner: RoundedCorners.Corner.BL
 		}
 	}

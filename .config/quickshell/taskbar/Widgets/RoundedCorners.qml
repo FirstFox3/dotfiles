@@ -24,13 +24,9 @@ Shape {
 				case RoundedCorners.Corner.BL: return 270;
 			}
 		}
-	}
 
-	horizontalAlignment: {
-		switch (corner) {
-			case RoundedCorners.Corner.TL: case RoundedCorners.Corner.BL: return Shape.AlignLeft;
-			case RoundedCorners.Corner.TR: case RoundedCorners.Corner.BR: return Shape.AlignRight;
-		}
+		origin.x: size / 2
+		origin.y: size / 2
 	}
 
 	ShapePath {
