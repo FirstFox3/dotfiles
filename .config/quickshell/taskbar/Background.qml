@@ -3,8 +3,13 @@ import Quickshell.Wayland
 import Quickshell.Io
 import QtMultimedia
 import QtQuick
+import QtCore
 
 ShellRoot {
+	Settings {
+		property alias backgroundSource: persistent.backgroundSource
+	}
+
 	PersistentProperties {
 		id: persistent
 		reloadableId: "backgroundPersistent"
@@ -54,18 +59,20 @@ ShellRoot {
 			}
 
 			MediaPlayer {
-				onSourceChanged: {
-					play()
-				}
-
-				Component.onCompleted: {
-					play()
-				}
-
 				source: persistent.backgroundSource
 				loops: MediaPlayer.Infinite
 
 				videoOutput: video
+
+				onSourceChanged: {
+					console.log("Source changed: " + persistent.backgroundSource)
+					play()
+				}
+
+				Component.onCompleted: {
+					console.log("Completed: " + persistent.backgroundSource)
+					play()
+				}
 			}
 
 			VideoOutput {
