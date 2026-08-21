@@ -3,18 +3,14 @@ import Quickshell.Wayland
 import Quickshell.Io
 import QtMultimedia
 import QtQuick
-import QtCore
 
 ShellRoot {
-	Settings {
-		property alias backgroundSource: persistent.backgroundSource
-	}
-
 	PersistentProperties {
 		id: persistent
 		reloadableId: "backgroundPersistent"
 
-		property url backgroundSource
+		property var backgroundSource: Settings.background
+		onBackgroundSourceChanged: Settings.background = backgroundSource
 	}
 
 	IpcHandler {
@@ -65,12 +61,10 @@ ShellRoot {
 				videoOutput: video
 
 				onSourceChanged: {
-					console.log("Source changed: " + persistent.backgroundSource)
 					play()
 				}
 
 				Component.onCompleted: {
-					console.log("Completed: " + persistent.backgroundSource)
 					play()
 				}
 			}
