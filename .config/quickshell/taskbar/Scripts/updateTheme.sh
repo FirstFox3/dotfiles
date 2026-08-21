@@ -1,4 +1,5 @@
 #!/bin/sh
 
-ffmpeg -i "$1" -vframes 1 /usr/share/wallpapers/frameOne.jpg
-matugen image /usr/share/wallpapers/frameOne.jpg --prefer value
+ffmpeg -i "$1" -vframes 1 $XDG_STATE_HOME/frameOne.jpg
+matugen image $XDG_STATE_HOME/frameOne.jpg --prefer value
+rm $XDG_STATE_HOME/frameOne.jpg
