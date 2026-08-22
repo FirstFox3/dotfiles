@@ -6,6 +6,8 @@ import QtQuick
 Variants {
 	model: Quickshell.screens
 
+	readonly property int radius: 20
+
 	PanelWindow {
 		property var modelData
 
@@ -25,28 +27,28 @@ Variants {
 		RoundedCorners { 
 			anchors.top: parent.top
 			anchors.left: parent.left
-			size: 20
+			size: radius
 			corner: RoundedCorners.Corner.TL
 		}
 
 		RoundedCorners { 
 			anchors.top: parent.top
 			anchors.right: parent.right
-			size: 20
+			size: radius
 			corner: RoundedCorners.Corner.TR
 		}
 
 		RoundedCorners { 
 			anchors.bottom: parent.bottom
 			anchors.right: parent.right
-			size: 20
+			size: radius
 			corner: RoundedCorners.Corner.BR
 		}
 
 		RoundedCorners { 
 			anchors.bottom: parent.bottom
 			anchors.left: parent.left
-			size: 20
+			size: radius
 			corner: RoundedCorners.Corner.BL
 		}
 	}
